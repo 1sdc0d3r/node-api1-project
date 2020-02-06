@@ -41,7 +41,7 @@ server.get("/api/users/:id", (req, res) => {
 });
 
 server.post("/api/users", (req, res) => {
-  console.log(`req: ${req}`);
+  // console.log(`req: ${req}`);
   db.insert(req.body)
     .then(user => res.status(201).json(user))
     .catch(error => {

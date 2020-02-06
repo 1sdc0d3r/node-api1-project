@@ -28,20 +28,36 @@ export default class Form extends Component {
       .put(`http://localhost:5000/api/users/${id}`, user)
       .then(res => {
         console.log(res);
-        this.setState({ ...this.state, isEditing: false });
+        this.setState({
+          ...this.state,
+          isEditing: false,
+          editing: {}
+        });
       })
       .catch(err => console.log(err));
   };
 
-  onSubmitHandler = () => {
-    this.editUser();
+  createUser = () => {
+    const user = this.state.editing;
+    axios
+      .post("http://localhost:5000/api/users", user)
+      .then(res => {
+        console.log(res);
+        this.setState({ ...this.state, creating: false });
+      })
+      .catch(err => console.log(err));
   };
 
   render() {
     // console.log("state", this.state);
     return (
       <>
-        <form onSubmit={this.onSubmitHandler}>
+        <form
+          //? WHY IS THIS TERNARY OPERATOR NOT WORKING IN THE ONSUBMIT (line 46)??
+          onSubmit={() =>
+            this.state.isEditing ? this.editUser() : this.createUser()
+          }
+        >
           <label>Name:</label>
           <input
             name="name"
