@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.wrapper {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-card {
+  border: 2px solid deepskyblue;
+  width: 48%;
+  margin: 2rem auto;
+  text-align: center;
+}
